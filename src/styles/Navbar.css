@@ -1,0 +1,38 @@
+.Navbar {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #ebebd3;
+  position: relative;
+}
+
+.Navbar__brand {
+  color: #083d77;
+  font-size: 2rem;
+  display: inline-block;
+  position: relative;
+}
+
+.Navbar__brand:hover {
+  color: #083d77;
+  text-decoration: none;
+}
+
+.Navbar__brand::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #083d77;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+.Navbar__brand:hover::after {
+  width: 101%;
+  left: 0;
+}
+
+.Navbar__brand-logo {
+  margin-right: 0.5rem;
+  height: 60px;
+}

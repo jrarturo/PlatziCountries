@@ -1,0 +1,15 @@
+.Countries__hero {
+  width: 100%;
+  padding: 90rem 0;
+  background-color: #ebebd3;
+
+  display: flex;
+  justify-content: center;
+}
+
+.Countries__hero {
+  max-height: 50px;
+}
+.img_hero {
+  height: 10px;
+}

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam:wght@600&family=Roboto&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-family: 'Kufam', cursive;
+  font-size: 40px;
+}
+App-div-links {
+  display: inline;
+  justify-self: center;
+}
