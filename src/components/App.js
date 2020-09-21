@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from '../pages/Home';
 import Countries from './Countries';
+
 import Layout from './Layout';
 
 function App() {
