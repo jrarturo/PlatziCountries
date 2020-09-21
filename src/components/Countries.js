@@ -3,6 +3,7 @@ import React from 'react';
 //import { ListCountries } from './ListCountries';
 //import { Details } from './Details';
 import '../styles/Countries.css';
+import '../styles/App.css';
 //import header from '../images/countries-logo.svg';
 
 import { Link } from 'react-router-dom';
@@ -41,8 +42,10 @@ class CountryClass extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App">
+        <div className="searchbar-filter container">
           <input
+            className="searchbar"
+            placeholder="Search Country"
             type="text"
             value={this.state.search}
             onChange={this.updateSearch.bind(this)}
