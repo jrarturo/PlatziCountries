@@ -1,12 +1,6 @@
 import React from 'react';
-//import Navbar from './Navbar';
-//import { ListCountries } from './ListCountries';
-//import { Details } from './Details';
 import '../styles/Countries.css';
 import '../styles/App.css';
-//import header from '../images/countries-logo.svg';
-
-import { Link } from 'react-router-dom';
 
 const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
 
@@ -42,7 +36,7 @@ class CountryClass extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="searchbar-filter container">
+        <div>
           <input
             className="searchbar"
             placeholder="Search Country"
@@ -50,16 +44,23 @@ class CountryClass extends React.Component {
             value={this.state.search}
             onChange={this.updateSearch.bind(this)}
           />
-          {items.map((item) => (
-            <tr key={item.flag}>
-              <td>{item.name}</td>
-              <Link to="www.platzi.com">
-                <td className="c1">
-                  <img src={item.flag} width="45px" alt={item.name} />
-                </td>
-              </Link>
-            </tr>
-          ))}
+          <div className="container all-countries">
+            {items.map((item) => (
+              <div>
+                <tr key={item.flag}>
+                  <td className="c1">
+                    <img
+                      className="country-flag"
+                      src={item.flag}
+                      width="45px"
+                      alt={item.name}
+                    />
+                  </td>
+                </tr>
+                <td className="country-info">{item.name}</td>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }

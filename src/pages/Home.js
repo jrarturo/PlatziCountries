@@ -9,7 +9,9 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <br />
           <img src={world} className="World-logo" alt="logo" />
+          <br />
           <p>Welcome to the Countries App</p>
           <div className="container">
             <div></div>
