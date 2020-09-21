@@ -1,10 +1,11 @@
 import React from 'react';
+
 import '../styles/Countries.css';
 import '../styles/App.css';
 
 const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
 
-class CountryClass extends React.Component {
+class Countries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +13,7 @@ class CountryClass extends React.Component {
       isLoaded: false,
       search: '',
     };
+    this.searchHandler = this.searchHandler.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +27,8 @@ class CountryClass extends React.Component {
       });
   }
 
-  updateSearch(e) {
-    this.setState({ search: e.target.value.substr(0, 20) });
+  searchHandler(e) {
+    this.setState({ search: e.target.value });
   }
 
   render() {
@@ -36,14 +38,15 @@ class CountryClass extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
+        <div className="container">
           <input
             className="searchbar"
             placeholder="Search Country"
             type="text"
             value={this.state.search}
-            onChange={this.updateSearch.bind(this)}
+            onChange={this.searchHandler}
           />
+
           <div className="container all-countries">
             {items.map((item) => (
               <div>
@@ -67,4 +70,4 @@ class CountryClass extends React.Component {
   }
 }
 
-export default CountryClass;
+export default Countries;

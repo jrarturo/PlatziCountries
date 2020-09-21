@@ -84,9 +84,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  border: radius;
-  outline: none;
+  border: px solid #083d77;
+
   padding: 0.6rem 20rem 0.6rem 1rem;
 }
 
