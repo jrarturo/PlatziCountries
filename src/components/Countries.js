@@ -1,55 +1,60 @@
 import React from 'react';
-
+import PageLoading from './PageLoading';
 import '../styles/Countries.css';
 import '../styles/App.css';
 
 const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
 
 class Countries extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      isLoaded: false,
-      search: '',
-    };
-    this.searchHandler = this.searchHandler.bind(this);
+  state = {
+    items: [],
+    loading: true,
+    search: '',
+  };
+
+  async componentDidMount() {
+    const response = await fetch(allCountriesAPI);
+    const data = await response.json();
+    this.setState({ items: data, loading: false });
   }
 
-  componentDidMount() {
-    fetch(allCountriesAPI)
-      .then((result) => result.json())
-      .then((json) => {
-        this.setState({
-          isLoaded: true,
-          items: json,
-        });
-      });
-  }
-
-  searchHandler(e) {
+  updateSearch(e) {
     this.setState({ search: e.target.value });
   }
 
   render() {
-    let { isLoaded, items } = this.state;
+    let searchingFor = this.state.items.filter((items) => {
+      return items.name.indexOf(this.state.search) !== -1;
+    });
 
-    if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
+    if (this.state.loading) {
+      return <PageLoading />;
+    }
+
+    if (!this.state.items) {
       return (
-        <div className="container">
+        <div className="App-header">
+          <p>Didn't get a Country or Countries</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="container">
+        <div>
           <input
-            className="searchbar"
+            className="form-control"
             placeholder="Search Country"
             type="text"
             value={this.state.search}
-            onChange={this.searchHandler}
+            onChange={this.updateSearch.bind(this)}
           />
+        </div>
 
-          <div className="container all-countries">
-            {items.map((item) => (
-              <div>
+        <div className="container all-countries">
+          {searchingFor.map((item) => {
+            return (
+              <div className="country" key={item.numericCode}>
                 <tr key={item.flag}>
                   <td className="c1">
                     <img
@@ -62,12 +67,11 @@ class Countries extends React.Component {
                 </tr>
                 <td className="country-info">{item.name}</td>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
-
 export default Countries;
